@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: auth
+  datasource:
+    name: dataSourceUsers
+    url: jdbc:postgresql://localhost:5432/authorizationdb
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      connection-timeout: ${POOL_DATA_CONNECTION_TIMEOUT:30000}
+      minimum-idle: ${POOL_DATA_MINIMUM_IDLE:1}
+      maximum-pool-size: ${POOL_DATA_MAXIMUM_POOL_SIZE:10}
+      idle-timeout: ${POOL_DATA_IDLE_TIMEOUT:600000}
+      max-lifetime: ${POOL_DATA_MAX_LIFE_TIME:1800000}
+      auto-commit: ${POOL_DATA_AUTO_COMMIT:true}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: ${CONTEXT_PATH:/security/v1}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+security:
+  secret: ETdxEcSSo2s1aeQznPA3xodgThZYBhfcoGpbzfbwTTc=
