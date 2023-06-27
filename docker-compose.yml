@@ -4,7 +4,7 @@ services:
   auth-service:
     depends_on:
       - postgres-auth
-    build: .
+    image: weversonlemos/auth:latest
     container_name: auth-service
     restart: always
     ports:
