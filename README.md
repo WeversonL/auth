@@ -4,7 +4,14 @@
 
 Project created to practice Spring Security for generating and authenticating with JWT tokens.
 
-## Screenshot
+## Technologies
+
+- Java
+- Spring Boot
+- PostgreSQL
+- Docker
+
+**Spring Data JPA was chosen for this project, due to the simplicity required for the queries. There are no queries or complex insertions that demand high resources and performance, so JPA was used in this application**
 
 ## Requirements
 
