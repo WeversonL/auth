@@ -94,9 +94,9 @@ public class DefaultControllerAdvice {
                 .description(BAD_REQUEST_EXCEPTION.getDescription())
                 .build();
 
-        bindException.getAllErrors().forEach(error -> {
+        bindException.getFieldErrors().forEach(error -> {
+            String field = error.getField();
             String message = error.getDefaultMessage();
-            String field = error instanceof FieldError ? ((FieldError) error).getField() : "";
             String formattedMessage = String.format(message, field);
             apiErrorResponse.getErrors().add(new FieldErros(formattedMessage));
         });
