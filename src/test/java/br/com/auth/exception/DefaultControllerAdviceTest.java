@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
@@ -69,11 +68,11 @@ public class DefaultControllerAdviceTest {
         FieldError fieldError1 = new FieldError("objectName", "fieldName1", "Error message 1");
         FieldError fieldError2 = new FieldError("objectName", "fieldName2", "Error message 2");
 
-        List<ObjectError> errors = new ArrayList<>();
+        List<FieldError> errors = new ArrayList<>();
         errors.add(fieldError1);
         errors.add(fieldError2);
 
-        when(bindException.getAllErrors()).thenReturn(errors);
+        when(bindException.getFieldErrors()).thenReturn(errors);
 
         ApiErrorResponse apiErrorResponse = defaultControllerAdvice.onBindException(bindException);
 
@@ -82,7 +81,7 @@ public class DefaultControllerAdviceTest {
         assertEquals("Invalid request parameters", apiErrorResponse.getDescription());
         assertEquals(2, apiErrorResponse.getErrors().size());
 
-        verify(bindException).getAllErrors();
+        verify(bindException).getFieldErrors();
     }
 
 }
